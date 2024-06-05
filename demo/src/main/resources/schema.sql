@@ -1,0 +1,1 @@
+CREATE SCHEMA IF NOT EXISTS pa_spring_schema_demo;

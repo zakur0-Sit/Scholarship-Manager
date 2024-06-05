@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+    <link rel="stylesheet" href="css/profile.css">
+</head>
+<body>
+
+    <main>
+        <nav>
+            <h3>Scholarship</h3>
+            <ul>
+                <li><img src="img/ico/home.png" class="ico"><a href="index.html">Home</a></li>
+                <li><img src="img/ico/profile.png" class="ico"><a href="profile.html">Profile</a></li>
+                <li><img src="img/ico/paper.png" class="ico"><a href="docs.html">Docs</a></li>
+            </ul>
+            <a href="login.html" id="log-out">Log out</a>
+        </nav>
+
+        <section>
+            <h2>Cazacu Ion</h2>
+            <div class="personal-info">
+                <img src="img/profile.jpg" alt="profile-image" class="profile-photo">
+                <div class="personal-data">
+                    <div class="content-1">
+                        <p>ID</p><br>
+                        <p class="data" id="id">0123456789</p><br>
+                        <p>Email</p><br>
+                        <p class="data" id="email">ceva@gmail.com</p><br>
+                        <p>Phone number</p><br>
+                        <p class="data" id="phone">+0123456789</p><br>
+                        <p>Date of birth</p><br>
+                        <p class="data" id="birth">25.08.2003</p><br>
+                    </div>
+
+                    <div class="content-2">
+                        <p>Country</p><br>
+                        <p class="data" id="country">Wonderland</p><br>
+                        <p>Address</p><br>
+                        <p class="data" id="address">Chiung Сhiong, str.Ceva strada</p><br>
+                        <p>Class</p><br>
+                        <p class="data" id="class">12C</p><br>
+                        <p>Attendance</p><br>
+                        <p class="data" id="attendance">15.09.2019</p><br>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="grades">
+            <div class="semesters">
+                <p onclick="showSemester(1)">Semester 1</p>
+                <p onclick="showSemester(2)">Semester 2</p>
+                <p onclick="showSemester(3)">Semester 3</p>
+                <p onclick="showSemester(4)">Semester 4</p>
+                <p onclick="showSemester(5)">Semester 5</p>
+                <p onclick="showSemester(6)">Semester 6</p>
+            </div>
+            <table>
+                <tr>
+                    <th>Semester</th>
+                    <th>Subject Name</th>
+                    <th>Grade</th>
+                    <th>Credits</th>
+                </tr>
+                <tr data-semester="3">
+                    <td>3</td>
+                    <td>Graph Algorithms</td>
+                    <td>5</td>
+                    <td>5</td>
+                </tr>
+                <tr data-semester="3">
+                    <td>3</td>
+                    <td>Computer Networks</td>
+                    <td>9</td>
+                    <td>6</td>
+                </tr>
+                <tr data-semester="3">
+                    <td>3</td>
+                    <td>English</td>
+                    <td>9</td>
+                    <td>4</td>
+                </tr>
+                <tr data-semester="3">
+                    <td>3</td>
+                    <td>Data Bases</td>
+                    <td>7</td>
+                    <td>6</td>
+                </tr>
+                <tr data-semester="3">
+                    <td>3</td>
+                    <td>Physical Education</td>
+                    <td>10</td>
+                    <td>1</td>
+                </tr>
+                <tr data-semester="3">
+                    <td>3</td>
+                    <td>Mathematics</td>
+                    <td>8</td>
+                    <td>5</td>
+                </tr>
+                <tr data-semester="3">
+                    <td>3</td>
+                    <td>Object Oriented Programming</td>
+                    <td>9</td>
+                    <td>6</td>
+                </tr>
+            </table>
+        </section>
+    </main>
+    <footer>
+
+    </footer>
+    <script>
+        function showSemester(semester) {
+            const rows = document.querySelectorAll('tr[data-semester]');
+            rows.forEach(row => {
+                row.style.display = 'none';
+            });
+
+            const selectedRows = document.querySelectorAll(`tr[data-semester='${semester}']`);
+            selectedRows.forEach(row => {
+                row.style.display = '';
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            showSemester(1);
+        });
+    </script>
+</body>
+</html>
