@@ -11,6 +11,7 @@ import school.repository.CourseRepository;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+import java.sql.*;
 import java.util.Arrays;
 
 @Service
@@ -69,5 +70,21 @@ public class CourseService {
 
     public void deleteCourse(Long id) {
         courseRepository.deleteById(id);
+    }
+
+    public int getOutstandingStudents(){
+        try {
+            Connection connection = DriverManager.getConnection("jdbc:postgresql://proiect", "postgres", "master");
+            CallableStatement callableStatement = connection.prepareCall("{ ? = call studenti_restantieri() }");
+            callableStatement.registerOutParameter(1, Types.INTEGER);
+            callableStatement.execute();
+
+            int rezultat = callableStatement.getInt(1);
+
+            connection.close();
+            return rezultat;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

@@ -11,6 +11,7 @@ import school.repository.StudentRepository;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+import java.sql.*;
 import java.util.Arrays;
 
 @Service
@@ -75,4 +76,32 @@ public class StudentService {
     public void deleteStudent(Long id) {
         studentRepository.deleteById(id);
     }
+
+    public void studentListWithGradesAndScholarshipStatus(int year){
+        try {
+            Connection connection = DriverManager.getConnection("jdbc:postgresql://proiect", "postgres", "master");
+
+            CallableStatement callableStatement = connection.prepareCall("{ ? = call student_list_with_grades_and_scholarship_status(?) }");
+            callableStatement.registerOutParameter(1, Types.OTHER);
+            callableStatement.setInt(2, year);
+            callableStatement.execute();
+
+            ResultSet resultSet = (ResultSet) callableStatement.getObject(1);
+
+            while (resultSet.next()) {
+                String firstName = resultSet.getString("student_first_name");
+                String lastName = resultSet.getString("student_last_name");
+                double averageGrade = resultSet.getDouble("average_grade");
+                String scholarshipStatus = resultSet.getString("scholarship_status");
+                System.out.println("Student: " + firstName + " " + lastName + ", Average Grade: " + averageGrade + ", Scholarship Status: " + scholarshipStatus);
+            }
+
+            resultSet.close();
+            callableStatement.close();
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
+
