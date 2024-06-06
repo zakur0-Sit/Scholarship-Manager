@@ -11,6 +11,7 @@ import school.repository.GradeRepository;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+import java.sql.*;
 import java.util.Arrays;
 
 @Service
@@ -69,5 +70,44 @@ public class GradeService {
 
     public void deleteGrade(Long id) {
         gradeRepository.deleteById(id);
+    }
+    public void update_grades(int idStudent, int newValue){
+        try {
+            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/proiect", "postgres", "master");
+
+            CallableStatement callableStatement = connection.prepareCall("{ call update_grades(?, ?) }");
+            callableStatement.setInt(1, idStudent);
+            callableStatement.setInt(2, newValue);
+            callableStatement.executeUpdate();
+            System.out.println("Updated successfully.");
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void averageGradesPerObject(int courseID){
+        try {
+        Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/proiect", "postgres", "master");
+
+        CallableStatement callableStatement = connection.prepareCall("{ call average_grades_per_subject(?) }");
+
+        callableStatement.setInt(1, courseID);
+
+        ResultSet resultSet = callableStatement.executeQuery();
+
+        while (resultSet.next()) {
+            String courseName = resultSet.getString("course_name");
+            double averageGrade = resultSet.getDouble("average_grade");
+            System.out.println("Course: " + courseName + ", Average Grade: " + averageGrade);
+        }
+
+        resultSet.close();
+        callableStatement.close();
+        connection.close();
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+
     }
 }
