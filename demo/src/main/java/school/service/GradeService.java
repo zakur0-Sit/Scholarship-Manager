@@ -73,28 +73,28 @@ public class GradeService {
     }
     public void update_grades(int idStudent, int newValue){
         try {
-            Connection connection = DriverManager.getConnection("jdbc:postgresql://proiect", "postgres", "master");
+            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/proiect", "postgres", "master");
 
-            CallableStatement callableStatement = connection.prepareCall("{ ? = call update_grades(?, ?) }");
-            callableStatement.setInt(2, idStudent);
-            callableStatement.setInt(3, newValue);
-            callableStatement.execute();
+            CallableStatement callableStatement = connection.prepareCall("{ call update_grades(?, ?) }");
+            callableStatement.setInt(1, idStudent);
+            callableStatement.setInt(2, newValue);
+            callableStatement.executeUpdate();
+            System.out.println("Updated successfully.");
             connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public void averageGradesPerSubject(int courseID){
+    public void averageGradesPerObject(int courseID){
         try {
-        Connection connection = DriverManager.getConnection("jdbc:postgresql://proiect", "postgres", "master");
+        Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/proiect", "postgres", "master");
 
-        CallableStatement callableStatement = connection.prepareCall("{ ? = call average_grades_per_subject(?) }");
-        callableStatement.registerOutParameter(1, Types.OTHER);
-        callableStatement.setInt(2, courseID);
-        callableStatement.execute();
+        CallableStatement callableStatement = connection.prepareCall("{ call average_grades_per_subject(?) }");
 
-        ResultSet resultSet = (ResultSet) callableStatement.getObject(1);
+        callableStatement.setInt(1, courseID);
+
+        ResultSet resultSet = callableStatement.executeQuery();
 
         while (resultSet.next()) {
             String courseName = resultSet.getString("course_name");

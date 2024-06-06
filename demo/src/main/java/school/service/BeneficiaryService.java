@@ -76,12 +76,13 @@ public class BeneficiaryService {
     }
     public void addBeneficiary(int studentId, int scholarshipId){
         try {
-            Connection connection = DriverManager.getConnection("jdbc:postgresql://proiect", "postgres", "master");
+            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/proiect", "postgres", "master");
 
-            CallableStatement callableStatement = connection.prepareCall("{ ? = call add_beneficiary(?, ?) }");
-            callableStatement.setInt(2, studentId);
-            callableStatement.setInt(3, scholarshipId);
+            CallableStatement callableStatement = connection.prepareCall("{ call add_beneficiary(?, ?) }");
+            callableStatement.setInt(1, studentId);
+            callableStatement.setInt(2, scholarshipId);
             callableStatement.execute();
+            System.out.println("Successfully added beneficiary "+ studentId+ " with the scholarship id "+ scholarshipId);
             connection.close();
         } catch (SQLException e) {
             e.printStackTrace();

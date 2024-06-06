@@ -23,6 +23,9 @@ public class StudentController {
         return studentService.getAll(pageNo, pageSize, sortBy, sortDirection, filterBy, filterValue);
     }
 
+  // public void callStudentStatusFunction(int year){
+    //   studentService.callStudentStatusFunction(year);
+  // }
     @GetMapping("/{id}")
     public Student getStudentById(@PathVariable Long id) {
         return studentService.getStudentById(id);

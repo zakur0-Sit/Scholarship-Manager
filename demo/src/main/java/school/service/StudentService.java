@@ -77,31 +77,26 @@ public class StudentService {
         studentRepository.deleteById(id);
     }
 
-    public void studentListWithGradesAndScholarshipStatus(int year){
-        try {
-            Connection connection = DriverManager.getConnection("jdbc:postgresql://proiect", "postgres", "master");
+    public void callStudentStatusFunction(int yearOfStudy) {
+        String query = "{ CALL student_status(?) }";
 
-            CallableStatement callableStatement = connection.prepareCall("{ ? = call student_list_with_grades_and_scholarship_status(?) }");
-            callableStatement.registerOutParameter(1, Types.OTHER);
-            callableStatement.setInt(2, year);
-            callableStatement.execute();
+        try (Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/proiect", "postgres", "master");
+             CallableStatement callableStatement = connection.prepareCall(query)) {
 
-            ResultSet resultSet = (ResultSet) callableStatement.getObject(1);
+            callableStatement.setInt(1, yearOfStudy);
+            ResultSet resultSet = callableStatement.executeQuery();
 
             while (resultSet.next()) {
-                String firstName = resultSet.getString("student_first_name");
-                String lastName = resultSet.getString("student_last_name");
-                double averageGrade = resultSet.getDouble("average_grade");
-                String scholarshipStatus = resultSet.getString("scholarship_status");
-                System.out.println("Student: " + firstName + " " + lastName + ", Average Grade: " + averageGrade + ", Scholarship Status: " + scholarshipStatus);
+                System.out.println("First Name: " + resultSet.getString("student_first_name"));
+                System.out.println("Last Name: " + resultSet.getString("student_last_name"));
+                System.out.println("Average Grade: " + resultSet.getFloat("average_grade"));
+                System.out.println("Scholarship Status: " + resultSet.getString("scholarship_status"));
+                System.out.println("----");
             }
-
-            resultSet.close();
-            callableStatement.close();
-            connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+
 }
 
