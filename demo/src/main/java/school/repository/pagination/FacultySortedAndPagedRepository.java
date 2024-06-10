@@ -1,6 +1,6 @@
 package school.repository.pagination;
 
-
+/*
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.PagingAndSortingRepository;
@@ -14,3 +14,4 @@ public interface FacultySortedAndPagedRepository extends PagingAndSortingReposit
 
     Page<Faculty> findAllByNameContainsIgnoreCase(String nameContains, Pageable pageable);
 }
+*/

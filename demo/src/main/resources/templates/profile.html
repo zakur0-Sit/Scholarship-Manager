@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+    <link rel="stylesheet" href="css/profile.css">
+</head>
+<body>
+
+    <main>
+        <nav>
+            <h3>Scholarship</h3>
+            <ul>
+                <li><img src="img/ico/home.png" class="ico"><a href="index.html">Home</a></li>
+                <li><img src="img/ico/profile.png" class="ico"><a href="profile.html">Profile</a></li>
+                <li><img src="img/ico/paper.png" class="ico"><a href="docs.html">Docs</a></li>
+            </ul>
+            <a href="login.html" id="log-out">Log out</a>
+        </nav>
+
+        <section>
+            <h2 th:text="${fullName}">Numele Utilizatorului</h2>
+            <div class="personal-info">
+                <!-- Informații personale -->
+                <div class="content-1">
+                    <p>ID</p><br>
+                    <p class="data" th:text="${id}">ID</p><br>
+                    <p>Email</p><br>
+                    <p class="data" th:text="${email}">Email</p><br>
+                    <p>Phone number</p><br>
+                    <p class="data" th:text="${phoneNumber}">Phone number</p><br>
+                    <p>Date of birth</p><br>
+                    <p class="data" th:text="${dateOfBirth}">Date of birth</p><br>
+
+                </div>
+
+                    <div class="content-2">
+                        <p>Country</p><br>
+                        <p class="data" th:text="${county}">Country</p><br>
+                        <p>Address</p><br>
+                        <p class="data" th:text="${address}">Address</p><br>
+                        <p>Year</p><br>
+                        <p class="data" th:text="${year}">Year</p><br>
+                        <p>Group</p><br>
+                        <p class="data" th:text="${group}">Group</p><br>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="grades">
+            <div class="semesters">
+                <p onclick="showSemester(1)">Semester 1</p>
+                <p onclick="showSemester(2)">Semester 2</p>
+                <p onclick="showSemester(3)">Semester 3</p>
+                <p onclick="showSemester(4)">Semester 4</p>
+                <p onclick="showSemester(5)">Semester 5</p>
+                <p onclick="showSemester(6)">Semester 6</p>
+            </div>
+            <table>
+                <tr>
+                    <th>Semester</th>
+                    <th>Subject Name</th>
+                    <th>Grade</th>
+                    <th>Credits</th>
+                </tr>
+                <!-- Utilizăm Thymeleaf pentru a itera prin lista de note și a le afișa -->
+                <tr th:each="grade : ${grades}">
+                    <td th:text="${grade.semester}">Semester</td>
+                    <td th:text="${grade.subjectName}">Subject Name</td>
+                    <td th:text="${grade.grade}">Grade</td>
+                    <td th:text="${grade.credits}">Credits</td>
+                </tr>
+            </table>
+        </section>
+    </main>
+    <footer>
+
+    </footer>
+    <script>
+        function showSemester(semester) {
+            const rows = document.querySelectorAll('tr[data-semester]');
+            rows.forEach(row => {
+                row.style.display = 'none';
+            });
+
+            const selectedRows = document.querySelectorAll(`tr[data-semester='${semester}']`);
+            selectedRows.forEach(row => {
+                row.style.display = '';
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            showSemester(1);
+        });
+    </script>
+</body>
+</html>

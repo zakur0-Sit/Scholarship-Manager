@@ -1,5 +1,5 @@
 package school.repository;
-
+/*
 
 import school.model.auth.ERole;
 import school.model.auth.Role;
@@ -12,3 +12,4 @@ import java.util.Optional;
 public interface RoleRepository extends JpaRepository<Role, Long> {
     Optional<Role> findByName(ERole name);
 }
+*/

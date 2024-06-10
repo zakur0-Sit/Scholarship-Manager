@@ -1,0 +1,149 @@
+*
+{
+    margin: 0;
+    padding: 0;
+    font-family: "Futura Bk BT [Rus by me]"
+}
+
+body
+{
+    background-color: #F4F5F7;
+}
+
+main
+{
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+nav
+{
+    border-radius: 10px;
+    width: 20%;
+    height: 350px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: solid 1px #7071E7;
+    margin-bottom: 40px;
+}
+
+nav>h3
+{
+    font-size: 26px;
+}
+
+ul
+{
+    margin-top: 20px;
+    list-style-type: none;
+}
+
+.ico
+{
+    width: 25px;
+    margin-right: 10px;
+}
+
+nav a
+{
+    width: 80px;
+}
+
+a
+{
+    font-size: 26px;
+    text-decoration: none;
+    color: #3C3F41;
+    display: inline-block;
+    border-radius: 10px;
+    padding: 3px 10px;
+}
+
+#log-out
+{
+    margin-top: 50px;
+    font-size: 20px;
+    background-color: #7071E7;
+    color: #fff;
+    padding: 5px 10px;
+    text-align: center;
+}
+
+section
+{
+    width: 70%;
+    height: 350px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    border-radius: 10px;
+    border: solid 1px #7071E7;
+    margin-bottom: 40px;
+}
+
+.docs
+{
+    width: 90%;
+    display: flex;
+    justify-content: space-around;
+
+}
+
+.element
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+section img
+{
+    width: 100px;
+    height: 100px;
+    margin-top: 20px;
+}
+
+footer
+{
+    position: absolute;
+    bottom: 0;
+    left: 2%;
+    width: 95%;
+    height: 200px;
+    background-color: #fff;
+    border: solid 1px #7071E7;
+    margin: 0 auto 20px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+}
+
+footer>h3
+{
+    color: #7071E7;
+    font-size: 36px;
+    font-weight: 900;
+    margin-right: 50px;
+}
+
+footer>p
+{
+    font-size: 20px;
+    color: #B7B8F3;
+}
+
+ul a:hover
+{
+    background-color: #7071E7;
+    color: #fff;
+}

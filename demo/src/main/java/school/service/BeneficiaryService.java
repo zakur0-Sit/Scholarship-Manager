@@ -74,19 +74,5 @@ public class BeneficiaryService {
     public void deleteBeneficiary(Long id) {
         beneficiaryRepository.deleteById(id);
     }
-    public void addBeneficiary(int studentId, int scholarshipId){
-        try {
-            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/proiect", "postgres", "master");
 
-            CallableStatement callableStatement = connection.prepareCall("{ call add_beneficiary(?, ?) }");
-            callableStatement.setInt(1, studentId);
-            callableStatement.setInt(2, scholarshipId);
-            callableStatement.execute();
-            System.out.println("Successfully added beneficiary "+ studentId+ " with the scholarship id "+ scholarshipId);
-            connection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-    }
 }

@@ -1,5 +1,5 @@
 package school.controller;
-
+/*
 import school.security.impl.UserDetailsImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -57,4 +57,4 @@ public class TestController {
         }
         return ResponseEntity.ok().body(email);
     }
-}
+}*/

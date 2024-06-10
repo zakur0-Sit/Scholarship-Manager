@@ -1,6 +1,6 @@
 package school.model.auth;
 
-
+/*
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -46,3 +46,4 @@ public enum ERole {
         return roleOptional.orElse(ROLE_USER);
     }
 }
+*/

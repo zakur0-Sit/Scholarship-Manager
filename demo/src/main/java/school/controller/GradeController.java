@@ -1,16 +1,35 @@
 package school.controller;
 
+import org.springframework.ui.Model;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import school.model.business.Grade;
+import school.model.business.Student;
+import school.payload.request.LoginRequest;
+import school.repository.GradeRepository;
+import school.service.CustomUserService;
 import school.service.GradeService;
+import school.service.StudentService;
+
+import java.util.List;
+
 
 @RestController
 @RequestMapping("/grades")
 public class GradeController {
     @Autowired
     private GradeService gradeService;
+    @Autowired
+    private CustomUserService userService;
+
+    private LoginRequest loginRequest;
+    @Autowired
+    private StudentService studentService;
+    @Autowired
+    private GradeRepository gradeRepository;
 
     @GetMapping
     public Page<Grade> getAllGrades(
@@ -45,4 +64,26 @@ public class GradeController {
     public void deleteGrade(@PathVariable Long id) {
         gradeService.deleteGrade(id);
     }
+
+/*
+    @GetMapping("/profile")
+    public String profile(Model model) {
+       // Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = loginRequest.getUsername();
+        Long studentId = userService.findUserIdByUsername(username);
+
+        Student student = studentService.findById(studentId);
+
+        model.addAttribute("fullName", student.getFullName());
+        model.addAttribute("id", student.getId());
+        model.addAttribute("email", student.getEmail());
+        model.addAttribute("phoneNumber", student.getPhoneNumber());
+        model.addAttribute("dateOfBirth", student.getDateOfBirth());
+        model.addAttribute("county", student.getCountry());
+        model.addAttribute("address", student.getAddress());
+        model.addAttribute("year", student.getYear());
+        model.addAttribute("group", student.getGroup());
+        return "profile";
+    }
+*/
 }

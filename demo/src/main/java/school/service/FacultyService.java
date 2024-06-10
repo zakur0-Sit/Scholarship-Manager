@@ -1,5 +1,5 @@
 package school.service;
-
+/*
 import school.model.business.Faculty;
 import school.repository.pagination.FacultySortedAndPagedRepository;
 import lombok.AllArgsConstructor;
@@ -65,4 +65,4 @@ public class FacultyService {
         }
     }
 
-}
+}*/

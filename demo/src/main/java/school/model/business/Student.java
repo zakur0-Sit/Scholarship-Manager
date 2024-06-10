@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -36,4 +36,11 @@ public class Student {
     @OneToMany(mappedBy = "student")
     private List<Beneficiary> beneficiaries;
 
+    public Object getFullName() {
+        return firstName + " " + lastName;
+    }
+
+    public Object getDateOfBirth() {
+        return birthDate;
+    }
 }

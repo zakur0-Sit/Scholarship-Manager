@@ -1,7 +1,6 @@
 package school.controller;
-
+/*
 import school.service.FacultyService;
-import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
-@SecurityRequirement(name = "bearerAuth")
 @RestController
 @RequestMapping("/api/v1/faculties")
 public class FacultyController {
@@ -31,8 +29,7 @@ public class FacultyController {
      * call from the repository using the "filterValue" param.
      * 2. b) What about trying to sort them by studentCount? How you will extend this?
      */
-
-    @GetMapping("/")
+/* @GetMapping("/")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> getAll(@RequestParam(defaultValue = "0") Integer pageNo,
                                     @RequestParam(defaultValue = "10") Integer pageSize,
@@ -47,3 +44,4 @@ public class FacultyController {
     }
 
 }
+*/

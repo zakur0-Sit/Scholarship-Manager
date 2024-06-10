@@ -1,5 +1,5 @@
 package school.dto;
-
+/*
 import school.model.business.Faculty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -40,6 +40,6 @@ public class FacultyDTO {
                         "/api/v1/universities" + univId + "/faculties/" + this.getId() + "/students/" + student.getId(),
                         "students", "GET"))
                 .collect(Collectors.toList());
-    }*/
+    }
 
-}
+}*/

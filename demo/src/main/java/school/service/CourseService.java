@@ -72,20 +72,6 @@ public class CourseService {
         courseRepository.deleteById(id);
     }
 
-    public void getOutstandingStudents() {
-        try (Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/proiect", "postgres", "master");
-             CallableStatement callableStatement = connection.prepareCall("{ call studenti_restantieri() }")) {
 
-            ResultSet resultSet = callableStatement.executeQuery();
-
-            while (resultSet.next()) {
-                String materie = resultSet.getString("materie");
-                int nr_restantieri = resultSet.getInt("nr_restantieri");
-                System.out.println("Materie: " + materie + ", Număr Restanțieri: " + nr_restantieri);
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
 
 }

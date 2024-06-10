@@ -35,6 +35,10 @@ public class StudentService {
         return studentRepository.findAll(pageable);
     }
 
+    public Student findById(Long studentId) {
+        return studentRepository.findById(studentId).get();
+    }
+
     @AllArgsConstructor
     @Getter
     public enum SortOrder {
@@ -77,26 +81,6 @@ public class StudentService {
         studentRepository.deleteById(id);
     }
 
-    public void callStudentStatusFunction(int yearOfStudy) {
-        String query = "{ CALL student_status(?) }";
-
-        try (Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/proiect", "postgres", "master");
-             CallableStatement callableStatement = connection.prepareCall(query)) {
-
-            callableStatement.setInt(1, yearOfStudy);
-            ResultSet resultSet = callableStatement.executeQuery();
-
-            while (resultSet.next()) {
-                System.out.println("First Name: " + resultSet.getString("student_first_name"));
-                System.out.println("Last Name: " + resultSet.getString("student_last_name"));
-                System.out.println("Average Grade: " + resultSet.getFloat("average_grade"));
-                System.out.println("Scholarship Status: " + resultSet.getString("scholarship_status"));
-                System.out.println("----");
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
 
 }
 
