@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Docs</title>
     <link rel="stylesheet" href="css/docs.css">
+    <link rel="shortcut icon" href="#">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <style>
         /* Ascunde întregul conținut al paginii inițial */
@@ -69,7 +70,7 @@
         var jwtToken = localStorage.getItem('jwtToken');
         if (!jwtToken) {
             alert("Trebuie să te loghezi pentru a accesa pagina docs");
-            window.location.href = 'login.html';  // Redirecționează către pagina de login
+            window.location.href = 'login';  // Redirecționează către pagina de login
             return;
         }
         $.ajax({

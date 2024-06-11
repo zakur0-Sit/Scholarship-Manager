@@ -35,7 +35,7 @@ public class WebSecurityConfig {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(req -> req
-                        .requestMatchers("/login", "/register","/index","/profile","/docs","/bursa","/signup").permitAll()
+                        .requestMatchers("/login", "/register","/index","/profile","/docs","/bursa","/signup","/css/**", "/img/**", "/docs/**").permitAll()
                         .requestMatchers("/admin_only").hasAuthority("ADMIN")
                         .requestMatchers("/api/profile","/api/index","/api/docs").authenticated()
                         .anyRequest().authenticated()

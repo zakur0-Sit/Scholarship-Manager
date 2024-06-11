@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="data:,">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <link rel="shortcut icon" href="#">
     <style>
         /* Ascunde întregul conținut al paginii inițial */
         body > * {
@@ -56,7 +57,7 @@
         var jwtToken = localStorage.getItem('jwtToken');
         if (!jwtToken) {
             alert("Trebuie să te loghezi pentru a accesa pagina index");
-            window.location.href = 'login.html';  // Redirecționează către pagina de login
+            window.location.href = 'login';  // Redirecționează către pagina de login
             return;
         }
         $.ajax({
@@ -75,7 +76,7 @@
             error: function() {
                 alert("Eroare de autentificare. Redirecționare către login.");
                 localStorage.removeItem('jwtToken');
-                window.location.href = 'login.html';
+                window.location.href = 'login';
             }
         });
     }
