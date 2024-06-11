@@ -5,7 +5,9 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import school.model.auth.Role;
 import school.model.auth.User;
+import school.model.business.Student;
 import school.repository.AuthenticationResponse;
+import school.repository.StudentRepository;
 import school.repository.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -22,6 +24,7 @@ public class CustomUserService {
     private UserRepository repository;
     private PasswordEncoder passwordEncoder;
     private JwtService jwtService;
+    private StudentRepository studentRepository;
     private AuthenticationManager authenticationManager;
 
     public CustomUserService(UserRepository repository, PasswordEncoder passwordEncoder, JwtService jwtService, AuthenticationManager authenticationManager) {
@@ -80,11 +83,13 @@ public class CustomUserService {
             throw new RuntimeException("User with username " + user.getUsername() + " already exists");
         }
     }
-   /* public User getUserDetailsByUsername(String username) {
-        // Utilizează metoda findByUsername() din UserRepository pentru a căuta utilizatorul în baza de date
-        User userOptional = repository.findByUsername(username);
-        return userOptional;
-    }*/
+    public StudentService getUserDetailsByUsername(String username) {
+        Student student = studentRepository.findByEmail(username);
+        StudentService studentService = new StudentService();
+        studentService.getStudentByEmail(username);
+        return studentService;
+
+    }
     public User save(User user) throws RuntimeException {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setRole(Role.ADMIN);

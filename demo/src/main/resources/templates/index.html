@@ -7,6 +7,7 @@
     <link rel="icon" href="data:,">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <link rel="shortcut icon" href="#">
+
     <style>
         /* Ascunde întregul conținut al paginii inițial */
         body > * {
@@ -23,7 +24,7 @@
             <li><img src="img/ico/profile.png" class="ico"><a href="profile">Profile</a></li>
             <li><img src="img/ico/paper.png" class="ico"><a href="docs">Docs</a></li>
         </ul>
-        <a href="login" id="log-out">Log out</a>
+        <a href="signup" id="log-out">Log out</a>
     </nav>
     <section>
         <div class="image-back"></div>
@@ -48,38 +49,7 @@
     <h3>Scholarship <br> Manager</h3>
     <p>&copy; 2024 Scholarship Manager. All rights reserved.</p>
 </footer>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        loadIndex();
-    });
+<script src="js/index.js"> </script>
 
-    function loadIndex() {
-        var jwtToken = localStorage.getItem('jwtToken');
-        if (!jwtToken) {
-            alert("Trebuie să te loghezi pentru a accesa pagina index");
-            window.location.href = 'login';  // Redirecționează către pagina de login
-            return;
-        }
-        $.ajax({
-            url: '/api/index',
-            type: 'GET',
-            beforeSend: function(xhr) {
-                xhr.setRequestHeader('Authorization', 'Bearer ' + jwtToken);
-            },
-            success: function(data) {
-                console.log("Acces permis.");
-                // Afișează conținutul paginii
-                document.querySelectorAll('body > *').forEach(function(element) {
-                    element.style.display = 'block';
-                });
-            },
-            error: function() {
-                alert("Eroare de autentificare. Redirecționare către login.");
-                localStorage.removeItem('jwtToken');
-                window.location.href = 'login';
-            }
-        });
-    }
-</script>
 </body>
 </html>

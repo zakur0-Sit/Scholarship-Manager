@@ -9,4 +9,7 @@ import school.model.business.Student;
 @Repository
 public interface StudentRepository extends JpaRepository<Student, Long> {
     Page<Student> findAllByFirstNameContainsIgnoreCaseOrLastNameContainsIgnoreCase(String firstName, String lastName, Pageable pageable);
+
+
+    Student findByEmail(String email);
 }

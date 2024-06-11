@@ -11,11 +11,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import school.model.auth.User;
+import school.model.business.Student;
 import school.payload.request.LoginRequest;
 import school.payload.response.AuthResponse;
 import school.repository.AuthenticationResponse;
 import school.repository.UserRepository;
 import school.service.CustomUserService;
+import school.service.StudentService;
 
 import javax.servlet.http.HttpSession;
 
@@ -74,10 +76,17 @@ public class AuthController {
 
     @ResponseBody
     @GetMapping("/api/profile")
+    public ResponseEntity<StudentService> getProfile(Authentication authentication) {
+        StudentService studentProfile = userService.getUserDetailsByUsername(authentication.getName());
+        return ResponseEntity.ok(studentProfile);
+    }
+    @GetMapping("/aapi/api/profile")
     public ResponseEntity<?> testProfile() {
         return ResponseEntity.status(HttpStatus.OK)
                 .body("");
     }
+
+
 
     @ResponseBody
     @GetMapping("/api/docs")

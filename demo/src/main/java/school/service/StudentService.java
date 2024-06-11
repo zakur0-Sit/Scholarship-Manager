@@ -80,6 +80,7 @@ public class StudentService {
     public void deleteStudent(Long id) {
         studentRepository.deleteById(id);
     }
+    public Student getStudentByEmail(String email) {return studentRepository.findByEmail(email);}
 
 
 }

@@ -6,6 +6,7 @@
     <link rel="stylesheet" type="text/css" href="/css/login.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="shortcut icon" href="#">
+    <script src="js/login.js"> </script>
 </head>
 
 <body>
@@ -24,32 +25,7 @@
         <div id="errorMessage" style="display: none;">Nume de utilizator sau parolă incorectă</div>
     </section>
 </main>
-<script>
-    function login() {
-        var username = $('#username').val();
-        var password = $('#password').val();
-        console.log("Trimitere cerere de autentificare...");
-        $.ajax({
-            url: '/login',
-            type: 'POST',
-            contentType: 'application/json',
-            data: JSON.stringify({username: username, password: password}),
-                success: function(response) {
-                    localStorage.setItem('jwtToken', response.token);
-                    console.log("Autentificare reușită. Token JWT salvat în localStorage:", response.token);
-                    $('#successMessage').show();
-                    window.location.href = 'index';
-            },
-            error: function() {
-                console.log("Eroare la autentificare.");
-                $('#errorMessage').show();
-            }
-
-        })
-
-    }
-    console.log("La final");
-
+<script src="js/login.js">
 </script>
 </body>
 </html>
