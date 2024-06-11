@@ -1,0 +1,20 @@
+
+
+java:S13013"KReplace this "switch" statement by "if" statements to increase readability.(Ù——ê8€‘ÏÉş1J$baca68c7-e10a-41a0-bb95-7d1c12a7f0d5
+j
+java:S2095L"HUse try-with-resources or close this "Connection" in a "finally" clause.(á´èúúÿÿÿÿ8Ä§Àõş1
+
+java:S2095["HUse try-with-resources or close this "Connection" in a "finally" clause.(á´èúúÿÿÿÿ8Âê³õş1J$cc78095a-05e9-45c8-8c77-13b0195a9d0a
+l
+java:S2095N"OUse try-with-resources or close this "CallableStatement" in a "finally" clause.(¸„âï8Ä§Àõş1
+’
+java:S2095]"OUse try-with-resources or close this "CallableStatement" in a "finally" clause.(ÁÊ½Ç8Ù·Ğôş1J$74d1beba-05dd-4574-be64-21375aff8c93
+…
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8•ˆÈôş1J$c0b62096-1479-4479-8501-4bad8f0f5bf1
+•	java:S100J"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Úö¶Îÿÿÿÿÿ8”‘ÏÉş1J$36d4eedf-53ed-43f6-a208-82e666ba05f4
+~
+java:S6437L"6Revoke and change this password, as it is compromised.(á´èúúÿÿÿÿ8”‘ÏÉş1J$a38ae9ee-0fd8-43f1-80f1-1937cc72def7
+m	java:S106R"+Replace this use of System.out by a logger.(¾÷è8˜‘ÏÉş1J$cafed38b-0bd7-4f3f-b602-430c3c7b1a90
+~
+java:S6437["6Revoke and change this password, as it is compromised.(á´èúúÿÿÿÿ8–‘ÏÉş1J$d51b9d41-075b-40da-a6fb-091e99c04c04
+r	java:S106f"+Replace this use of System.out by a logger.(Šœ«ıÿÿÿÿ8¤Î³õş1J$ea6f2016-f7f7-445e-b7bb-0d0fc5d74a97

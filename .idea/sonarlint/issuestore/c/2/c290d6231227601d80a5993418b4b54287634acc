@@ -1,0 +1,12 @@
+
+
+java:S13016"KReplace this "switch" statement by "if" statements to increase readability.(Ù——ê8ÅäÃôş1J$c7594c06-2927-40e0-b699-33d992eed64d
+
+java:S2095O"HUse try-with-resources or close this "Connection" in a "finally" clause.(á´èúúÿÿÿÿ8åäÃôş1J$883b5334-6382-42f5-97dc-0549178eec88
+’
+java:S2095Q"OUse try-with-resources or close this "CallableStatement" in a "finally" clause.(ñºÁÅ8åäÃôş1J$61467256-03b1-46d4-a033-176773bfab0d
+…
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8çäÃôş1J$f13d10ad-fe2a-4a02-af13-18c37d6b415f
+~
+java:S6437O"6Revoke and change this password, as it is compromised.(á´èúúÿÿÿÿ8ñäÃôş1J$f511d87e-31ff-4f61-96a5-a0d584d8752d
+m	java:S106U"+Replace this use of System.out by a logger.(İåËÿ8óäÃôş1J$25c6bd1d-0c45-4dbf-a5f9-db02c561da94

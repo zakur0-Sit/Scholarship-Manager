@@ -1,0 +1,10 @@
+
+	java:S112W"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8Ãşöôş1J$59ef4772-fc34-4206-9883-dbb8d21b816f
+“	java:S117S"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(óåüá8Åşöôş1J$0dae4b57-33b1-4fc6-b228-f8c6c67dbc3b
+
+java:S13013"KReplace this "switch" statement by "if" statements to increase readability.(Ù——ê8±½íôş1J$de737e22-b689-4d5b-a843-3e4365cd4ec9
+…
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8Ê½íôş1J$3d05b0e2-1e65-4522-ac35-d98ed832058e
+~
+java:S6437L"6Revoke and change this password, as it is compromised.(¯ä—¬úÿÿÿÿ8æşöôş1J$bd294b01-b15c-4f1c-a6e5-351b783d14bb
+r	java:S106T"+Replace this use of System.out by a logger.(úòö¨üÿÿÿÿ8èşöôş1J$4286b62c-785b-4c98-87a3-980dfe5d0a4d

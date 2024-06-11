@@ -1,0 +1,12 @@
+
+
+java:S13018"KReplace this "switch" statement by "if" statements to increase readability.(Ù——ê8ŸĞôËş1J$6eb4da6b-6901-40d3-8763-d2eb6283e433
+…
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8¸Îóòş1J$57310a43-20bf-4231-b129-0e404ee264f4
+~
+java:S6437S"6Revoke and change this password, as it is compromised.(¯ä—¬úÿÿÿÿ8ˆ„îóş1J$4134bb43-4b04-49cc-97ec-a0ded6b23e8b
+m	java:S106Z"+Replace this use of System.out by a logger.(ˆ‚ÑÔ8‹„îóş1J$19dcaf09-e9c3-4815-a1e9-c5922e94caf5
+m	java:S106["+Replace this use of System.out by a logger.(ë¨ÑÙ8‹„îóş1J$a3efdc30-224b-459c-9053-a416b9adcd04
+r	java:S106\"+Replace this use of System.out by a logger.(µœ¥™üÿÿÿÿ8Œ„îóş1J$60f9b98e-2526-4a58-8a8a-9e01bda0d963
+r	java:S106]"+Replace this use of System.out by a logger.(ÅÅş‚øÿÿÿÿ8Œ„îóş1J$3028a17a-222b-4c4d-a7cb-b5e51682220e
+m	java:S106^"+Replace this use of System.out by a logger.(ÅªäŞ8Œ„îóş1J$8624ffa2-ea11-4f69-9505-9b8aff191197
