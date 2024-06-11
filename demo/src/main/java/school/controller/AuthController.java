@@ -9,6 +9,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import school.model.auth.User;
 import school.payload.request.LoginRequest;
 import school.payload.response.AuthResponse;
@@ -34,19 +35,6 @@ public class AuthController {
     private UserRepository userRepository;
 
 
-    /*
-    @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody User request, HttpSession session) {
-        System.out.println("AICIIIIIIIIIIIIII");
-        AuthenticationResponse response = userService.authenticate(request);
-        if (response != null && response.getToken() != null) {
-            System.out.println("BA AICIIIIIIIIIIIIIII");
-            session.setAttribute("user", request);
-            emailUserSession = request.getEmail();
-            return ResponseEntity.ok().body(response);
-        }
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
-    }*/
     @ResponseBody
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
@@ -76,21 +64,25 @@ public class AuthController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
         }
     }
-    /*
+    @ResponseBody
+    @GetMapping("/profile")
+    public ModelAndView getProfile() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.isAuthenticated()) {
+            return new ModelAndView("profile.html");
+        } else {
+            return new ModelAndView("redirect:/login");
+        }
+    }
+
     @ResponseBody
     @GetMapping("/index")
-    public ResponseEntity<?> getUserDetails(@RequestBody Authentication authentication) {
-        if (authentication == null) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Unauthorized");
-        }
-        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-        return ResponseEntity.ok(userDetails);
-    }*/
-/*
-    public Long findStudentIdByUsername() {
+    public ModelAndView getHome() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String username = authentication.getName();
-        User user = userRepository.findByUsername(username);
-        return user.getId();
-    }*/
+        if (authentication != null && authentication.isAuthenticated()) {
+            return new ModelAndView("index.html");
+        } else {
+            return new ModelAndView("redirect:/login");
+        }
+    }
 }

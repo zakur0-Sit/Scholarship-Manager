@@ -45,7 +45,7 @@
                     console.log("JWT Token:", jwtToken);
                     localStorage.setItem('jwtToken', jwtToken); // Stocare token în localStorage
                     console.log("Authentication successful");
-                   // window.location.href = "/index.html"; // Redirecționare către altă pagină după autentificare
+                    window.location.href = "/index.html"; // Redirecționare către altă pagină după autentificare
                 } else {
                     console.log("Authentication failed");
                     document.getElementById("errorMessage").style.display = 'block';
