@@ -3,12 +3,11 @@
 <head>
     <link rel="icon" href="data:,">
     <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="/css/login.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
 <body>
-<div id="successMessage" style="display: none;">Login successful!</div>
-<div id="errorMessage" style="display: none;">Nume de utilizator sau parolă incorectă</div>
 <main>
     <div class="bg"></div>
     <section>
@@ -20,6 +19,8 @@
             <input type="password" id="password" name="password" required><br>
         </form>
         <button type="button" onclick="login()">Login</button>
+        <div id="successMessage" style="display: none;">Login successful!</div>
+        <div id="errorMessage" style="display: none;">Nume de utilizator sau parolă incorectă</div>
     </section>
 </main>
 <script>

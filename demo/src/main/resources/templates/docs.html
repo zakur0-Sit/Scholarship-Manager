@@ -4,41 +4,53 @@
     <meta charset="UTF-8">
     <title>Docs</title>
     <link rel="stylesheet" href="css/docs.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <style>
+        /* Ascunde întregul conținut al paginii inițial */
+        body > * {
+            display: none;
+        }
+    </style>
 </head>
 <body>
-    <main>
-        <nav>
-            <h3>Scholarship</h3>
-            <ul>
-                <li><img src="img/ico/home.png" class="ico"><a href="index.html">Home</a></li>
-                <li><img src="img/ico/profile.png" class="ico"><a href="profile.html">Profile</a></li>
-                <li><img src="img/ico/paper.png" class="ico"><a href="#">Docs</a></li>
-            </ul>
-            <a href="login.html" id="log-out">Log out</a>
-        </nav>
-        <section>
-            <div class="docs">
-                <div class="element">
-                    <img src="img/ico/doc.png">
-                    <h2>Model Cerere</h2>
-                    <a href="docs/Cerere%20Bursa.docx" download>Download</a>
-                </div>
-
-                <div class="element">
-                    <img src="img/ico/pdf.png">
-                    <h2>Ordin Acordare Burse</h2>
-                    <a href="docs/Ordin.pdf" download>Download</a>
-                </div>
-
-                <div class="element">
-                    <img src="img/ico/pdf.png">
-                    <h2>Protectia Datelor</h2>
-                    <a href="docs/GDPR.pdf" download>Download</a>
-                </div>
-
+<main>
+    <nav>
+        <h3>Scholarship</h3>
+        <ul>
+            <li><img src="img/ico/home.png" class="ico"><a href="index">Home</a></li>
+            <li><img src="img/ico/profile.png" class="ico"><a href="profile">Profile</a></li>
+            <li><img src="img/ico/paper.png" class="ico"><a href="docs">Docs</a></li>
+        </ul>
+        <a href="login" id="log-out">Log out</a>
+    </nav>
+    <section>
+        <div class="docs">
+            <div class="element">
+                <img src="img/ico/doc.png">
+                <h2>Model Cerere</h2>
+                <a href="docs/Cerere%20Bursa.docx" download>Download</a>
             </div>
-        </section>
-    </main>
+
+            <div class="element">
+                <img src="img/ico/pdf.png">
+                <h2>Ordin Acordare Burse</h2>
+                <a href="docs/Ordin.pdf" download>Download</a>
+            </div>
+
+            <div class="element">
+                <img src="img/ico/pdf.png">
+                <h2>Protectia Datelor</h2>
+                <a href="docs/GDPR.pdf" download>Download</a>
+            </div>
+
+            <div class="element">
+                <img src="img/ico/html.png">
+                <h2>Burse</h2>
+                <a href="bursa">View</a>
+            </div>
+        </div>
+    </section>
+</main>
 
     <footer>
         <h3>Scholarship <br> Manager</h3>
@@ -46,3 +58,38 @@
     </footer>
 </body>
 </html>
+<script>
+
+    document.addEventListener('DOMContentLoaded', function() {
+        loadDocs();
+
+    });
+
+    function loadDocs() {
+        var jwtToken = localStorage.getItem('jwtToken');
+        if (!jwtToken) {
+            alert("Trebuie să te loghezi pentru a accesa pagina docs");
+            window.location.href = 'login.html';  // Redirecționează către pagina de login
+            return;
+        }
+        $.ajax({
+            url: '/api/docs',
+            type: 'GET',
+            beforeSend: function(xhr) {
+                xhr.setRequestHeader('Authorization', 'Bearer ' + jwtToken);
+            },
+            success: function(data) {
+                console.log("Acces permis.");
+                // Afișează conținutul paginii
+                document.querySelectorAll('body > *').forEach(function(element) {
+                    element.style.display = 'block';
+                });
+            },
+            error: function() {
+                alert("Eroare de autentificare. Redirecționare către login.");
+                localStorage.removeItem('jwtToken');
+                window.location.href = 'login';
+            }
+        });
+    }
+</script>

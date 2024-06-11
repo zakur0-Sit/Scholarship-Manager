@@ -73,12 +73,26 @@ public class ViewController {
 
     @GetMapping("/index")
     public String index() {
-        return "index"; // Returnează numele fișierului HTML pentru pagina index.html
+        return "index";
     }
 
     @GetMapping("/profile")
     public String profile() {
-        return "profile"; // Returnează numele fișierului HTML pentru pagina profile.html
+        return "profile";
     }
+
+    @GetMapping("/bursa")
+    public String bursa() {
+        return "bursa";
+    }
+    @GetMapping("/docs")
+    public String docs() {
+        return "docs";
+    }
+    @GetMapping("/signup")
+    public String signup() {
+        return "signup";
+    }
+
 
 }

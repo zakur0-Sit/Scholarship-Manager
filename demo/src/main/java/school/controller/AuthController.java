@@ -79,6 +79,14 @@ public class AuthController {
                 .body("");
     }
 
+    @ResponseBody
+    @GetMapping("/api/docs")
+    public ResponseEntity<?> testDocs() {
+        return ResponseEntity.status(HttpStatus.OK)
+                .body("");
+    }
+
+
     /*@ResponseBody
     @GetMapping("/profile")
     public ModelAndView getProfile() {
