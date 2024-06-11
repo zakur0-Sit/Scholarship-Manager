@@ -2,13 +2,19 @@ package school.controller;
 
 
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.servlet.ModelAndView;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.view.RedirectView;
 import school.dto.UserDTO;
 import school.model.auth.User;
 import school.repository.UserRepository;
@@ -20,10 +26,10 @@ public class ViewController {
 
     @Autowired
     private UserRepository userRepository;
-   // private EmailService emailService;
+    // private EmailService emailService;
 
     //public ViewController(EmailService emailService) {
-       // this.emailService = emailService;
+    // this.emailService = emailService;
     //}
 
     @RequestMapping("/login")
@@ -38,6 +44,8 @@ public class ViewController {
         model.addAttribute("user", new User());
         return "register";
     }
+
+
 
    /* @RequestMapping("/validation")
     public String getValidationCode(HttpSession session) {
@@ -61,5 +69,16 @@ public class ViewController {
         }
         return null;
     }
+
+
+    @GetMapping("/index")
+    public String index() {
+        return "index"; // Returnează numele fișierului HTML pentru pagina index.html
+    }
+/*
+    @GetMapping("/profile")
+    public String profile() {
+        return "profile"; // Returnează numele fișierului HTML pentru pagina profile.html
+    }*/
 
 }

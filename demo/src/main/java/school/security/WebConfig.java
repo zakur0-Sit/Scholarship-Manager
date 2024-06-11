@@ -22,5 +22,12 @@ public class WebConfig implements WebMvcConfigurer {
                 .allowCredentials(true)
                 .maxAge(3600)
                 .allowedHeaders("*");
+        registry.addMapping("/index")
+                .allowedOrigins("http://localhost:8666")
+                .allowedMethods("GET")
+                .allowCredentials(true)
+                .maxAge(3600)
+                .allowedHeaders("*");
     }
+
 }

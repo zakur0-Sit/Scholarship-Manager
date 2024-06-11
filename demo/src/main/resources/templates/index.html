@@ -5,6 +5,7 @@
     <title>Title</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="data:,">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 </head>
 <body>
 <main>
@@ -41,48 +42,32 @@
     <p>&copy; 2024 Scholarship Manager. All rights reserved.</p>
 </footer>
 <script>
-    // Verifică dacă există un token JWT în localStorage
     document.addEventListener('DOMContentLoaded', function() {
-        console.log("Aiciii")
-        var jwtToken = localStorage.getItem('jwtToken');
-        if (!jwtToken) {
-            window.location.href = '/login.html';
-            return;
-        }
-        //fetchWithAuth('/details');
-
-        // Folosește token-ul pentru a face cereri protejate
-        function fetchWithAuth(url, options = {}) {
-            console.log("AICIIIIIx2")
-            const headers = new Headers(options.headers || {});
-            headers.append('Authorization' + jwtToken);
-            filterChain.doFilter(request, response);
-
-            return fetch(url, {
-                ...options,
-                headers: headers
-            });
-        }
-
-        // Exemplu de utilizare a fetchWithAuth pentru o cerere protejată
-        fetchWithAuth('/index')
-            .then(response => {
-                if (response.status === 200) {
-                    return response.json();
-                } else {
-                    console.log("Unauthorized");
-                    window.location.href = '/login.html';
-                }
-            })
-            .then(data => {
-                // Lucrează cu datele protejate
-                console.log(data);
-            })
-            .catch(error => {
-                console.error("Error:", error);
-            });
+        loadIndex(); // Apelează funcția loadIndex() la încărcarea paginii
     });
 
+    function loadIndex() {
+        console.log("În index...");
+        var jwtToken = localStorage.getItem('jwtToken');
+        if (!jwtToken) {
+            alert("Trebuie să te loghezi pentru a accesa metoda demo");
+            return;
+        }
+        $.ajax({
+            url: '/api/index',
+            type: 'GET',
+            beforeSend: function(xhr) {
+                // Include tokenul JWT în header-ul Authorization
+                xhr.setRequestHeader('Authorization', 'Bearer ' + jwtToken);
+            },
+            success: function(response) {
+                alert("Ai dreptul să accesezi metoda demo");
+            },
+            error: function() {
+                alert("Nu ai dreptul să accesezi metoda demo");
+            }
+        });
+    }
 </script>
 </body>
 </html>

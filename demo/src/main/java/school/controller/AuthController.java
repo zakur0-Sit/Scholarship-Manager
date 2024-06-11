@@ -65,24 +65,34 @@ public class AuthController {
         }
     }
     @ResponseBody
+    @GetMapping("/api/index")
+    public ResponseEntity<?> testIndex(){
+        return ResponseEntity.status(HttpStatus.OK)
+            .body("Ceva");
+    }
+
+    /*
     @GetMapping("/profile")
     public ModelAndView getProfile() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null && authentication.isAuthenticated()) {
-            return new ModelAndView("profile.html");
+            UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+            return new ModelAndView("profile.html").addObject("username", userDetails.getUsername());
         } else {
             return new ModelAndView("redirect:/login");
         }
     }
 
-    @ResponseBody
     @GetMapping("/index")
     public ModelAndView getHome() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null && authentication.isAuthenticated()) {
-            return new ModelAndView("index.html");
+            UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+            return new ModelAndView("index.html").addObject("username", userDetails.getUsername());
         } else {
             return new ModelAndView("redirect:/login");
         }
-    }
+    }*/
+
+
 }

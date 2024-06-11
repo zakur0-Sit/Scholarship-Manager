@@ -5,64 +5,49 @@
     <title>Login</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
+
 <body>
 <div id="successMessage" style="display: none;">Login successful!</div>
 <div id="errorMessage" style="display: none;">Nume de utilizator sau parolă incorectă</div>
-<h2>Pagina de Login</h2>
-<form id="loginForm" onsubmit="submitForm(event)" method="post">
-    <label for="username">Nume de utilizator:</label><br>
-    <input type="text" id="username" name="username" required><br>
-    <label for="password">Parolă:</label><br>
-    <input type="password" id="password" name="password" required><br>
-    <button type="submit">Login</button>
-</form>
-
+<main>
+    <div class="bg"></div>
+    <section>
+        <h2>Scholarship Manager</h2>
+        <form>
+            <label for="username">Username</label><br>
+            <input type="text" id="username" name="username" required><br>
+            <label for="password">Password</label><br>
+            <input type="password" id="password" name="password" required><br>
+        </form>
+        <button type="button" onclick="login()">Login</button>
+    </section>
+</main>
 <script>
-    function submitForm(event) {
-        event.preventDefault();
-        var username = document.getElementById("username").value;
-        var password = document.getElementById("password").value;
-        loginRequest(username, password);
-    }
+    function login() {
+        var username = $('#username').val();
+        var password = $('#password').val();
+        console.log("Trimitere cerere de autentificare...");
+        $.ajax({
+            url: '/login',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify({username: username, password: password}),
+                success: function(response) {
+                    localStorage.setItem('jwtToken', response.token);
+                    console.log("Autentificare reușită. Token JWT salvat în localStorage:", response.token);
+                    $('#successMessage').show();
 
-    function loginRequest(username, password) {
-        var credentials = {
-            username: username,
-            password: password
-        };
-
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", "/login");
-        xhr.setRequestHeader("Content-Type", "application/json");
-        xhr.onreadystatechange = function () {
-            console.log("sper macar aici")
-            if (xhr.readyState === 4) {
-                if (xhr.status === 200) {
-                    console.log(xhr.responseText);
-                    var data = JSON.parse(xhr.responseText);
-                    console.log("json: " ,data)// Parsarea răspunsului în format JSON
-                    var jwtToken = data.token; // Extrage token-ul JWT din răspunsul primit
-                    console.log("JWT Token:", jwtToken);
-                    localStorage.setItem('jwtToken', jwtToken); // Stocare token în localStorage
-                    console.log("Authentication successful");
-                    window.location.href = "/index.html"; // Redirecționare către altă pagină după autentificare
-                } else {
-                    console.log("Authentication failed");
-                    document.getElementById("errorMessage").style.display = 'block';
-                }
+            },
+            error: function() {
+                console.log("Eroare la autentificare.");
+                $('#errorMessage').show();
             }
-        };
-        xhr.send(JSON.stringify(credentials));
-    }
 
-    // Funcția de logout
-    function logout() {
-        localStorage.removeItem('jwtToken');
-        alert("Logout successful");
-        setTimeout(function() {
-            window.location.href = '/login';
-        }, 1000);
+        })
+
     }
+    console.log("La final");
+
 </script>
 </body>
 </html>
