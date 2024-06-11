@@ -36,7 +36,7 @@
                     localStorage.setItem('jwtToken', response.token);
                     console.log("Autentificare reușită. Token JWT salvat în localStorage:", response.token);
                     $('#successMessage').show();
-
+                    window.location.href = 'index';
             },
             error: function() {
                 console.log("Eroare la autentificare.");

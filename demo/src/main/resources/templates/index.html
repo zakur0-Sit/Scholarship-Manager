@@ -6,6 +6,12 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="data:,">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <style>
+        /* Ascunde întregul conținut al paginii inițial */
+        body > * {
+            display: none;
+        }
+    </style>
 </head>
 <body>
 <main>
@@ -43,28 +49,33 @@
 </footer>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        loadIndex(); // Apelează funcția loadIndex() la încărcarea paginii
+        loadIndex();
     });
 
     function loadIndex() {
-        console.log("În index...");
         var jwtToken = localStorage.getItem('jwtToken');
         if (!jwtToken) {
-            alert("Trebuie să te loghezi pentru a accesa metoda demo");
+            alert("Trebuie să te loghezi pentru a accesa pagina index");
+            window.location.href = 'login.html';  // Redirecționează către pagina de login
             return;
         }
         $.ajax({
             url: '/api/index',
             type: 'GET',
             beforeSend: function(xhr) {
-                // Include tokenul JWT în header-ul Authorization
                 xhr.setRequestHeader('Authorization', 'Bearer ' + jwtToken);
             },
-            success: function(response) {
-                alert("Ai dreptul să accesezi metoda demo");
+            success: function(data) {
+                console.log("Acces permis.");
+                // Afișează conținutul paginii
+                document.querySelectorAll('body > *').forEach(function(element) {
+                    element.style.display = 'block';
+                });
             },
             error: function() {
-                alert("Nu ai dreptul să accesezi metoda demo");
+                alert("Eroare de autentificare. Redirecționare către login.");
+                localStorage.removeItem('jwtToken');
+                window.location.href = 'login.html';
             }
         });
     }

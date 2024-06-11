@@ -4,9 +4,15 @@
     <meta charset="UTF-8">
     <title>Profile</title>
     <link rel="stylesheet" href="css/profile.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <style>
+        /* Ascunde întregul conținut al paginii inițial */
+        body > * {
+            display: none;
+        }
+    </style>
 </head>
 <body>
-
     <main>
         <nav>
             <h3>Scholarship</h3>
@@ -90,46 +96,43 @@
             });
         }
         document.addEventListener('DOMContentLoaded', function() {
-            console.log("Aiciii")
             showSemester(1);
+            loadProfile();
+
+        });
+
+        function loadProfile() {
+            console.log("in profile..")
             var jwtToken = localStorage.getItem('jwtToken');
+            console.log("dupa token..")
             if (!jwtToken) {
-                window.location.href = '/login.html';
+                alert("Trebuie să te loghezi pentru a accesa pagina profile");
+                window.location.href = 'login';  // Redirecționează către pagina de login
                 return;
             }
-            //fetchWithAuth('/details');
-
-            // Folosește token-ul pentru a face cereri protejate
-            function fetchWithAuth(url, options = {}) {
-                console.log("AICIIIIIx2")
-                const headers = new Headers(options.headers || {});
-                headers.append('Authorization' + jwtToken);
-                //filterChain.doFilter(request, response);
-
-                return fetch(url, {
-                    ...options,
-                    headers: headers
-                });
-            }
-
-            // Exemplu de utilizare a fetchWithAuth pentru o cerere protejată
-            fetchWithAuth('/index')
-                .then(response => {
-                    if (response.status === 200) {
-                        return response.json();
-                    } else {
-                        console.log("Unauthorized");
-                        window.location.href = '/login.html';
-                    }
-                })
-                .then(data => {
-                    // Lucrează cu datele protejate
-                    console.log(data);
-                })
-                .catch(error => {
-                    console.error("Error:", error);
-                });
-        });
+            console.log("dupa if")
+            $.ajax({
+                url: '/api/profile',
+                type: 'GET',
+                beforeSend: function(xhr) {
+                    console.log("inainte de authoriz")
+                    xhr.setRequestHeader('Authorization', 'Bearer ' + jwtToken);
+                    console.log("dupa auth")
+                },
+                success: function(data) {
+                    console.log("Acces permis.");
+                    // Afișează conținutul paginii
+                    document.querySelectorAll('body > *').forEach(function(element) {
+                        element.style.display = 'block';
+                    });
+                },
+                error: function() {
+                    alert("Eroare de autentificare. Redirecționare către login.");
+                    localStorage.removeItem('jwtToken');
+                    window.location.href = 'login';
+                }
+            });
+        }
 
     </script>
 </body>

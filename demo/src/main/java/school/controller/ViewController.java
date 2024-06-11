@@ -75,10 +75,10 @@ public class ViewController {
     public String index() {
         return "index"; // Returnează numele fișierului HTML pentru pagina index.html
     }
-/*
+
     @GetMapping("/profile")
     public String profile() {
         return "profile"; // Returnează numele fișierului HTML pentru pagina profile.html
-    }*/
+    }
 
 }

@@ -68,10 +68,18 @@ public class AuthController {
     @GetMapping("/api/index")
     public ResponseEntity<?> testIndex(){
         return ResponseEntity.status(HttpStatus.OK)
-            .body("Ceva");
+            .body("");
     }
 
-    /*
+
+    @ResponseBody
+    @GetMapping("/api/profile")
+    public ResponseEntity<?> testProfile() {
+        return ResponseEntity.status(HttpStatus.OK)
+                .body("");
+    }
+
+    /*@ResponseBody
     @GetMapping("/profile")
     public ModelAndView getProfile() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -83,7 +91,7 @@ public class AuthController {
         }
     }
 
-    @GetMapping("/index")
+    /*@GetMapping("/index")
     public ModelAndView getHome() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null && authentication.isAuthenticated()) {
